@@ -11,7 +11,7 @@ This project hosts the code for implementing the SOLO algorithms for instance se
 Code will be available in this week.
 
 
-## SOlOv2
+## SOLOv2
 
 > [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/2003.10152),            
 > Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen        
