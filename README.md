@@ -13,8 +13,8 @@ Code will be available in this week.
 
 ## SOlOv2
 
-> [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/1912.04488),            
+> [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/2003.10152),            
 > Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen        
-> *arXiv preprint ([arXiv 1912.04488](https://arxiv.org/abs/1912.04488))*  
+> *arXiv preprint ([arXiv 2003.10152](https://arxiv.org/abs/2003.10152))*  
 
 Code will be released soon. Stay tuned.
