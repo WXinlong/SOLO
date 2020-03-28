@@ -17,13 +17,13 @@ We have tested the following versions of OS and softwares:
 - NCCL: 2.1.15/2.2.13/2.3.7/2.4.2
 - GCC(G++): 4.9/5.3/5.4/7.3
 
-### Install mmdetection
+### Install SOLO
 
 a. Create a conda virtual environment and activate it.
 
 ```shell
-conda create -n open-mmlab python=3.7 -y
-conda activate open-mmlab
+conda create -n solo python=3.7 -y
+conda activate solo
 ```
 
 b. Install PyTorch and torchvision following the [official instructions](https://pytorch.org/), e.g.,
@@ -32,14 +32,14 @@ b. Install PyTorch and torchvision following the [official instructions](https:/
 conda install pytorch torchvision -c pytorch
 ```
 
-c. Clone the mmdetection repository.
+c. Clone the SOLO repository.
 
 ```shell
-git clone https://github.com/open-mmlab/mmdetection.git
-cd mmdetection
+git clone https://github.com:WXinlong/SOLO.git
+cd SOLO
 ```
 
-d. Install build requirements and then install mmdetection.
+d. Install build requirements and then install SOLO.
 (We install pycocotools via the github repo instead of pypi because the pypi version is old and not compatible with the latest numpy.)
 
 ```shell
@@ -53,7 +53,7 @@ Note:
 1. The git commit id will be written to the version number with step d, e.g. 0.6.0+2e7045c. The version will also be saved in trained models.
 It is recommended that you run step d each time you pull some updates from github. If C++/CUDA codes are modified, then this step is compulsory.
 
-2. Following the above instructions, mmdetection is installed on `dev` mode, any local modifications made to the code will take effect without the need to reinstall it (unless you submit some commits and want to update the version number).
+2. Following the above instructions, SOLO is installed on `dev` mode, any local modifications made to the code will take effect without the need to reinstall it (unless you submit some commits and want to update the version number).
 
 3. If you would like to use `opencv-python-headless` instead of `opencv-python`,
 you can install it before installing MMCV.
@@ -62,20 +62,20 @@ you can install it before installing MMCV.
 
 ### Another option: Docker Image
 
-We provide a [Dockerfile](https://github.com/open-mmlab/mmdetection/blob/master/docker/Dockerfile) to build an image.
+We provide a [Dockerfile](https://github.com/WXinlong/SOLO/blob/master/docker/Dockerfile) to build an image.
 
 ```shell
 # build an image with PyTorch 1.1, CUDA 10.0 and CUDNN 7.5
-docker build -t mmdetection docker/
+docker build -t SOLO docker/
 ```
 
 ### Prepare datasets
 
-It is recommended to symlink the dataset root to `$MMDETECTION/data`.
+It is recommended to symlink the dataset root to `$SOLO/data`.
 If your folder structure is different, you may need to change the corresponding paths in config files.
 
 ```
-mmdetection
+SOLO
 ├── mmdet
 ├── tools
 ├── configs
@@ -104,16 +104,16 @@ mv train/*/* train/
 
 ### A from-scratch setup script
 
-Here is a full script for setting up mmdetection with conda and link the dataset path (supposing that your COCO dataset path is $COCO_ROOT).
+Here is a full script for setting up SOLO with conda and link the dataset path (supposing that your COCO dataset path is $COCO_ROOT).
 
 ```shell
-conda create -n open-mmlab python=3.7 -y
-conda activate open-mmlab
+conda create -n solo python=3.7 -y
+conda activate solo
 
 conda install -c pytorch pytorch torchvision -y
 conda install cython -y
-git clone https://github.com/open-mmlab/mmdetection.git
-cd mmdetection
+git clone https://github.com/WXinlong/SOLO.git
+cd SOLO
 pip install -r requirements/build.txt
 pip install "git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI"
 pip install -v -e .

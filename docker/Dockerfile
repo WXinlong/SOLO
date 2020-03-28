@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxrender-dev libx
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# Install mmdetection
+# Install SOLO
 RUN conda install cython -y && conda clean --all
-RUN git clone https://github.com/open-mmlab/mmdetection.git /mmdetection
-WORKDIR /mmdetection
+RUN git clone https://github.com:WXinlong/SOLO.git /SOLO
+WORKDIR /SOLO
 RUN pip install --no-cache-dir -e .

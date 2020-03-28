@@ -1,127 +1,88 @@
 
-# MMDetection
+# SOLO: Segmenting Objects by Locations
 
-**News**: We released the technical report on [ArXiv](https://arxiv.org/abs/1906.07155).
+This project hosts the code for implementing the SOLO algorithms for instance segmentation.
 
-Documentation: https://mmdetection.readthedocs.io/
+> [**SOLO: Segmenting Objects by Locations**](https://arxiv.org/abs/1912.04488),            
+> Xinlong Wang, Tao Kong, Chunhua Shen, Yuning Jiang, Lei Li        
+> *arXiv preprint ([arXiv 1912.04488](https://arxiv.org/abs/1912.04488))*   
 
-## Introduction
 
-The master branch works with **PyTorch 1.1** or higher.
+> [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/2003.10152),            
+> Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen        
+> *arXiv preprint ([arXiv 2003.10152](https://arxiv.org/abs/2003.10152))*  
 
-mmdetection is an open source object detection toolbox based on PyTorch. It is
-a part of the open-mmlab project developed by [Multimedia Laboratory, CUHK](http://mmlab.ie.cuhk.edu.hk/).
+More code and models will be released soon. Stay tuned.
 
-![demo image](demo/coco_test_12510.jpg)
 
-### Major features
+## Highlights
+- **Totally box-free:**  SOLO is totally box-free thus not being restricted by (anchor) box locations and scales, and naturally benefits from the inherent advantages of FCNs.
+- **Direct instance segmentation:** Our method takes an image as input, directly outputs instance masks and corresponding class probabilities, in a fully convolutional, box-free and grouping-free paradigm.
+- **State-of-the-art performance:** Our best single model based on ResNet-101 and deformable convolutions achieves **41.7%** in AP on COCO test-dev (without multi-scale testing). A light-weight version of SOLOv2 executes at **31.3** FPS on a single V100 GPU and yields **37.1%** AP.
 
-- **Modular Design**
-
-  We decompose the detection framework into different components and one can easily construct a customized object detection framework by combining different modules.
-
-- **Support of multiple frameworks out of box**
-
-  The toolbox directly supports popular and contemporary detection frameworks, *e.g.* Faster RCNN, Mask RCNN, RetinaNet, etc.
-
-- **High efficiency**
-
-  All basic bbox and mask operations run on GPUs now. The training speed is faster than or comparable to other codebases, including [Detectron](https://github.com/facebookresearch/Detectron), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
-
-- **State of the art**
-
-  The toolbox stems from the codebase developed by the *MMDet* team, who won [COCO Detection Challenge](http://cocodataset.org/#detection-leaderboard) in 2018, and we keep pushing it forward.
-
-Apart from MMDetection, we also released a library [mmcv](https://github.com/open-mmlab/mmcv) for computer vision research, which is heavily depended on by this toolbox.
-
-## License
-
-This project is released under the [Apache 2.0 license](LICENSE).
-
-## Changelog
-
-v1.0.0 was released in 30/1/2020, with more than 20 fixes and improvements.
-Please refer to [CHANGELOG.md](docs/CHANGELOG.md) for details and release history.
-
-## Benchmark and model zoo
-
-Supported methods and backbones are shown in the below table.
-Results and models are available in the [Model zoo](docs/MODEL_ZOO.md).
-
-|                    | ResNet   | ResNeXt  | SENet    | VGG      | HRNet |
-|--------------------|:--------:|:--------:|:--------:|:--------:|:-----:|
-| RPN                | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Fast R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Faster R-CNN       | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Mask R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Cascade R-CNN      | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Cascade Mask R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
-| SSD                | ✗        | ✗        | ✗        | ✓        | ✗     |
-| RetinaNet          | ✓        | ✓        | ☐        | ✗        | ✓     |
-| GHM                | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Mask Scoring R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Double-Head R-CNN  | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Grid R-CNN (Plus)  | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Hybrid Task Cascade| ✓        | ✓        | ☐        | ✗        | ✓     |
-| Libra R-CNN        | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Guided Anchoring   | ✓        | ✓        | ☐        | ✗        | ✓     |
-| FCOS               | ✓        | ✓        | ☐        | ✗        | ✓     |
-| RepPoints          | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Foveabox           | ✓        | ✓        | ☐        | ✗        | ✓     |
-| FreeAnchor         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| NAS-FPN            | ✓        | ✓        | ☐        | ✗        | ✓     |
-| ATSS               | ✓        | ✓        | ☐        | ✗        | ✓     |
-
-Other features
-- [x] DCNv2
-- [x] Group Normalization
-- [x] Weight Standardization
-- [x] OHEM
-- [x] Soft-NMS
-- [x] Generalized Attention
-- [x] GCNet
-- [x] Mixed Precision (FP16) Training
-- [x] [InstaBoost](configs/instaboost/README.md)
+## Updates
+   - SOLOv1 is available. Code and trained models of SOLO and Decoupled SOLO are released. (28/03/2020)
 
 
 ## Installation
+This implementation is based on [mmdetection](https://github.com/open-mmlab/mmdetection)(v1.0.0). Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset preparation.
 
-Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset preparation.
+## Models
+For your convenience, we provide the following trained models on COCO (more models are coming soon).
 
+Model | Multi-scale training | Testing time / im | AP (minival) | Link
+--- |:---:|:---:|:---:|:---:
+SOLO_R50_FPN_1x | No | 77ms | 32.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/nTOgDldI4dvDrPs/download)
+SOLO_R50_FPN_3x | Yes | 77ms |  35.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/x4Fb4XQ0OmkBvaQ/download)
+Decoupled_SOLO_R50_FPN_1x | No | 85ms | 33.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/RcQyLrZQeeS6JIy/download)
+Decoupled_SOLO_R50_FPN_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/dXz11J672ax0Z1Q/download)
 
-## Get Started
+## Usage
 
-Please see [GETTING_STARTED.md](docs/GETTING_STARTED.md) for the basic usage of MMDetection.
+### Train with multiple GPUs
+    ./tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM}
 
-## Contributing
+    Example: 
+    ./tools/dist_train.sh configs/solo/solo_r50_fpn_8gpu_1x.py  8
 
-We appreciate all contributions to improve MMDetection. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
+### Train with single GPU
+    python tools/train.py ${CONFIG_FILE}
+    
+    Example:
+    python tools/train.py configs/solo/solo_r50_fpn_8gpu_1x.py
 
-## Acknowledgement
+### Testing
+    python tools/test_ins.py ${CONFIG_FILE} ${CHECKPOINT_FILE} --show --out  ${OUTPUT_FILE} --eval segm
+    
+    Example: 
+    python tools/test_ins.py configs/solo/solo_r50_fpn_8gpu_1x.py  SOLO_R50_FPN_1x.pth --show --out  results_solo.pkl --eval segm
 
-MMDetection is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors who implement their methods or add new features, as well as users who give valuable feedbacks.
-We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new detectors.
+### Visualization
 
+    python tools/test_ins_vis.py ${CONFIG_FILE} ${CHECKPOINT_FILE} --show --save_dir  ${SAVE_DIR}
+    
+    Example: 
+    python tools/test_ins_vis.py configs/solo/solo_r50_fpn_8gpu_1x.py  SOLO_R50_FPN_1x.pth --show --save_dir  work_dirs/vis_solo
 
-## Citation
+## Contributing to the project
+Any pull requests or issues are welcome.
 
-If you use this toolbox or benchmark in your research, please cite this project.
-
+## Citations
+Please consider citing our paper in your publications if the project helps your research. BibTeX reference is as follows.
 ```
-@article{mmdetection,
-  title   = {{MMDetection}: Open MMLab Detection Toolbox and Benchmark},
-  author  = {Chen, Kai and Wang, Jiaqi and Pang, Jiangmiao and Cao, Yuhang and
-             Xiong, Yu and Li, Xiaoxiao and Sun, Shuyang and Feng, Wansen and
-             Liu, Ziwei and Xu, Jiarui and Zhang, Zheng and Cheng, Dazhi and
-             Zhu, Chenchen and Cheng, Tianheng and Zhao, Qijie and Li, Buyu and
-             Lu, Xin and Zhu, Rui and Wu, Yue and Dai, Jifeng and Wang, Jingdong
-             and Shi, Jianping and Ouyang, Wanli and Loy, Chen Change and Lin, Dahua},
-  journal= {arXiv preprint arXiv:1906.07155},
+@article{wang2019solo,
+  title={SOLO: Segmenting Objects by Locations},
+  author={Wang, Xinlong and Kong, Tao and Shen, Chunhua and Jiang, Yuning and Li, Lei},
+  journal={arXiv preprint arXiv:1912.04488},
   year={2019}
 }
 ```
 
-
-## Contact
-
-This repo is currently maintained by Kai Chen ([@hellock](http://github.com/hellock)), Yuhang Cao ([@yhcao6](https://github.com/yhcao6)), Wenwei Zhang ([@ZwwWayne](https://github.com/ZwwWayne)), Jiangmiao Pang ([@OceanPang](https://github.com/OceanPang)) and Jiaqi Wang ([@myownskyW7](https://github.com/myownskyW7)).
+```
+@article{wang2020solov2,
+  title={SOLOv2: Dynamic, Faster and Stronger},
+  author={Wang, Xinlong and Zhang, Rufeng and  Kong, Tao and Li, Lei and Shen, Chunhua},
+  journal={arXiv preprint arXiv:2003.10152},
+  year={2020}
+}
+```

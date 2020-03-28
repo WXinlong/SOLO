@@ -1,6 +1,7 @@
 matplotlib
 mmcv>=0.2.15
 numpy
+scipy
 # need older pillow until torchvision is fixed
 Pillow<=6.2.2
 six

@@ -198,6 +198,26 @@ def segm2json(dataset, results):
     return bbox_json_results, segm_json_results
 
 
+def segm2json_segm(dataset, results):
+    segm_json_results = []
+    for idx in range(len(dataset)):
+        img_id = dataset.img_ids[idx]
+        seg = results[idx]
+        for label in range(len(seg)):
+            masks = seg[label]
+            for i in range(len(masks)):
+                mask_score = masks[i][1]
+                segm = masks[i][0]
+                data = dict()
+                data['image_id'] = img_id
+                data['score'] = float(mask_score)
+                data['category_id'] = dataset.cat_ids[label]
+                segm['counts'] = segm['counts'].decode()
+                data['segmentation'] = segm
+                segm_json_results.append(data)
+    return segm_json_results
+
+
 def results2json(dataset, results, out_file):
     result_files = dict()
     if isinstance(results[0], list):
@@ -218,4 +238,13 @@ def results2json(dataset, results, out_file):
         mmcv.dump(json_results, result_files['proposal'])
     else:
         raise TypeError('invalid type of results')
+    return result_files
+
+
+def results2json_segm(dataset, results, out_file):
+    result_files = dict()
+    json_results = segm2json_segm(dataset, results)
+    result_files['segm'] = '{}.{}.json'.format(out_file, 'segm')
+    mmcv.dump(json_results, result_files['segm'])
+
     return result_files
