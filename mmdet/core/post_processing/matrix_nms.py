@@ -18,7 +18,7 @@ def matrix_nms(seg_masks, cate_labels, cate_scores, kernel='gaussian', sigma=2.0
     n_samples = len(cate_labels)
     if n_samples == 0:
         return []
-    if sum_masks == None:
+    if sum_masks is None:
         sum_masks = seg_masks.sum((1, 2)).float()
     seg_masks = seg_masks.reshape(n_samples, -1).float()
     # inter.
