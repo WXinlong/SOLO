@@ -68,7 +68,7 @@ Decoupled_SOLO_R50_FPN_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aar
 Any pull requests or issues are welcome.
 
 ## Citations
-Please consider citing our paper in your publications if the project helps your research. BibTeX reference is as follows.
+Please consider citing our papers in your publications if the project helps your research. BibTeX reference is as follows.
 ```
 @article{wang2019solo,
   title={SOLO: Segmenting Objects by Locations},
