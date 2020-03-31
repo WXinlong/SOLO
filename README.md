@@ -21,6 +21,7 @@ More code and models will be released soon. Stay tuned.
 - **State-of-the-art performance:** Our best single model based on ResNet-101 and deformable convolutions achieves **41.7%** in AP on COCO test-dev (without multi-scale testing). A light-weight version of SOLOv2 executes at **31.3** FPS on a single V100 GPU and yields **37.1%** AP.
 
 ## Updates
+   - Light-weight models and R101-based models are available. (31/03/2020) 
    - SOLOv1 is available. Code and trained models of SOLO and Decoupled SOLO are released. (28/03/2020)
 
 
@@ -32,12 +33,25 @@ For your convenience, we provide the following trained models on COCO (more mode
 
 Model | Multi-scale training | Testing time / im | AP (minival) | Link
 --- |:---:|:---:|:---:|:---:
-SOLO_R50_FPN_1x | No | 77ms | 32.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/nTOgDldI4dvDrPs/download)
-SOLO_R50_FPN_3x | Yes | 77ms |  35.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/x4Fb4XQ0OmkBvaQ/download)
-Decoupled_SOLO_R50_FPN_1x | No | 85ms | 33.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/RcQyLrZQeeS6JIy/download)
-Decoupled_SOLO_R50_FPN_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/dXz11J672ax0Z1Q/download)
+SOLO_R50_1x | No | 77ms | 32.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/nTOgDldI4dvDrPs/download)
+SOLO_R50_3x | Yes | 77ms |  35.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/x4Fb4XQ0OmkBvaQ/download)
+SOLO_R101_3x | Yes | 86ms |  37.1 | [download](https://cloudstor.aarnet.edu.au/plus/s/WxOFQzHhhKQGxDG/download)
+Decoupled_SOLO_R50_1x | No | 85ms | 33.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/RcQyLrZQeeS6JIy/download)
+Decoupled_SOLO_R50_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/dXz11J672ax0Z1Q/download)
+Decoupled_SOLO_R101_3x | Yes | 92ms | 37.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/BRhKBimVmdFDI9o/download)
+
+**Light-weight models:**
+
+Model | Multi-scale training | Testing time / im | AP (minival) | Link
+--- |:---:|:---:|:---:|:---:
+DECOUPLED_SOLO_LIGHT_R50_3x | Yes | 29ms | 33.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/d0zuZgCnAjeYvod/download)
+DECOUPLED_SOLO_LIGHT_DCN_R50_3x | Yes | 36ms | 35.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/QvWhOTmCA5pFj6E/download)
 
 ## Usage
+
+### A quick demo
+
+Once the installation is done, you can download the provided models and use [inference_demo.py](demo/inference_demo.py) to run a quick demo.
 
 ### Train with multiple GPUs
     ./tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM}
