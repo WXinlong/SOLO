@@ -33,10 +33,8 @@ def vis_seg(data, result, img_norm_cfg, data_id, colors, score_thr, save_dir):
         
         seg_label = cur_result[0]
         seg_label = seg_label.cpu().numpy().astype(np.uint8)
-
         cate_label = cur_result[1]
         cate_label = cate_label.cpu().numpy()
-
         score = cur_result[2].cpu().numpy()
 
         vis_inds = score > score_thr
@@ -51,7 +49,6 @@ def vis_seg(data, result, img_norm_cfg, data_id, colors, score_thr, save_dir):
             cur_mask = mmcv.imresize(cur_mask, (w, h))
             cur_mask = (cur_mask > 0.5).astype(np.int32)
             mask_density.append(cur_mask.sum())
-
         orders = np.argsort(mask_density)
         seg_label = seg_label[orders]
         cate_label = cate_label[orders]
@@ -63,24 +60,12 @@ def vis_seg(data, result, img_norm_cfg, data_id, colors, score_thr, save_dir):
             cur_mask = seg_label[idx, :,:]
             cur_mask = mmcv.imresize(cur_mask, (w, h))
             cur_mask = (cur_mask > 0.5).astype(np.uint8)
-
             if cur_mask.sum() == 0:
                continue
-
             color_mask = np.random.randint(
                 0, 256, (1, 3), dtype=np.uint8)
             cur_mask_bool = cur_mask.astype(np.bool)
             seg_show[cur_mask_bool] = img_show[cur_mask_bool] * 0.5 + color_mask * 0.5
-
-        for idx in range(num_mask):
-            idx = -(idx+1)
-
-            cur_mask = seg_label[idx, :, :]
-            cur_mask = mmcv.imresize(cur_mask, (w, h))
-            cur_mask = (cur_mask > 0.5).astype(np.uint8)
-
-            if cur_mask.sum() == 0:
-                continue
 
             cur_cate = cate_label[idx]
             cur_score = cate_score[idx]
@@ -92,7 +77,6 @@ def vis_seg(data, result, img_norm_cfg, data_id, colors, score_thr, save_dir):
             vis_pos = (max(int(center_x) - 10, 0), int(center_y))
             cv2.putText(seg_show, label_text, vis_pos,
                         cv2.FONT_HERSHEY_COMPLEX, 0.3, (255, 255, 255))  # green
-
         mmcv.imwrite(seg_show, '{}/{}.jpg'.format(save_dir, data_id))
 
 
