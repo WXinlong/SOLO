@@ -8,7 +8,7 @@
 - CUDA 9.0 or higher
 - NCCL 2
 - GCC 4.9 or higher
-- [mmcv](https://github.com/open-mmlab/mmcv)
+- [mmcv 0.2.16](https://github.com/open-mmlab/mmcv/tree/v0.2.16)
 
 We have tested the following versions of OS and softwares:
 
