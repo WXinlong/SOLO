@@ -375,11 +375,7 @@ def main():
                 model = MMDataParallel(model, device_ids=[0])
                 outputs = single_gpu_test(model, data_loader, args.show)
             else:
-                # model = MMDistributedDataParallel(model.cuda())
-                model = MMDistributedDataParallel(
-                    model.cuda(),
-                    device_ids=[torch.cuda.current_device()],
-                    broadcast_buffers=False)
+                model = MMDistributedDataParallel(model.cuda())
                 outputs = multi_gpu_test(model, data_loader, args.tmpdir)
 
             rank, _ = get_dist_info()
