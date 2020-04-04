@@ -63,12 +63,16 @@ def multi_gpu_test(model, data_loader, tmpdir=None):
     model.eval()
     results = []
     dataset = data_loader.dataset
+    num_classes = len(dataset.CLASSES)
+
     rank, world_size = get_dist_info()
     if rank == 0:
         prog_bar = mmcv.ProgressBar(len(dataset))
     for i, data in enumerate(data_loader):
         with torch.no_grad():
-            result = model(return_loss=False, rescale=True, **data)
+            seg_result = model(return_loss=False, rescale=True, **data)
+
+        result = get_masks(seg_result, num_classes=num_classes)
         results.append(result)
 
         if rank == 0:
@@ -208,7 +212,6 @@ def main():
     else:
         model.CLASSES = dataset.CLASSES
 
-    assert not distributed
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
         outputs = single_gpu_test(model, data_loader)
