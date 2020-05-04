@@ -21,6 +21,11 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
         return hasattr(self, 'neck') and self.neck is not None
 
     @property
+    def with_mask_feat_head(self):
+        return hasattr(self, 'mask_feat_head') and \
+            self.mask_feat_head is not None
+
+    @property
     def with_shared_head(self):
         return hasattr(self, 'shared_head') and self.shared_head is not None
 
