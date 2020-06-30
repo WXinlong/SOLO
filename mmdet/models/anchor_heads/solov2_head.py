@@ -410,7 +410,7 @@ class SOLOv2Head(nn.Module):
         kernel_preds = kernel_preds.view(I, N, 1, 1)
         seg_preds = F.conv2d(seg_preds, kernel_preds, stride=1).squeeze(0).sigmoid()
         # mask.
-        seg_masks = seg_preds > 0.5
+        seg_masks = seg_preds > cfg.mask_thr
         sum_masks = seg_masks.sum((1, 2)).float()
 
         # filter.
@@ -464,5 +464,5 @@ class SOLOv2Head(nn.Module):
         seg_masks = F.interpolate(seg_preds,
                                size=ori_shape[:2],
                                mode='bilinear').squeeze(0)
-        seg_masks = seg_masks > 0.5
+        seg_masks = seg_masks > cfg.mask_thr
         return seg_masks, cate_labels, cate_scores
