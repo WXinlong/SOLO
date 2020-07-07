@@ -35,7 +35,7 @@ conda install pytorch torchvision -c pytorch
 c. Clone the SOLO repository.
 
 ```shell
-git clone https://github.com:WXinlong/SOLO.git
+git clone https://github.com/WXinlong/SOLO.git
 cd SOLO
 ```
 
