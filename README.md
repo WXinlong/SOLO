@@ -18,9 +18,11 @@ More code and models will be released soon. Stay tuned.
 ## Highlights
 - **Totally box-free:**  SOLO is totally box-free thus not being restricted by (anchor) box locations and scales, and naturally benefits from the inherent advantages of FCNs.
 - **Direct instance segmentation:** Our method takes an image as input, directly outputs instance masks and corresponding class probabilities, in a fully convolutional, box-free and grouping-free paradigm.
+- **High-quality mask prediction:** SOLOv2 is able to predict fine and detailed masks, especially at object boundaries.
 - **State-of-the-art performance:** Our best single model based on ResNet-101 and deformable convolutions achieves **41.7%** in AP on COCO test-dev (without multi-scale testing). A light-weight version of SOLOv2 executes at **31.3** FPS on a single V100 GPU and yields **37.1%** AP.
 
 ## Updates
+   - SOLOv2 is available. Code and trained models of SOLOv2 are released. (08/07/2020)
    - Light-weight models and R101-based models are available. (31/03/2020) 
    - SOLOv1 is available. Code and trained models of SOLO and Decoupled SOLO are released. (28/03/2020)
 
@@ -39,6 +41,11 @@ SOLO_R101_3x | Yes | 86ms |  37.1 | [download](https://cloudstor.aarnet.edu.au/p
 Decoupled_SOLO_R50_1x | No | 85ms | 33.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/RcQyLrZQeeS6JIy/download)
 Decoupled_SOLO_R50_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/dXz11J672ax0Z1Q/download)
 Decoupled_SOLO_R101_3x | Yes | 92ms | 37.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/BRhKBimVmdFDI9o/download)
+SOLOv2_R50_1x | No | 54ms | 34.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/DvjgeaPCarKZoVL/download)
+SOLOv2_R50_3x | Yes | 54ms | 37.5 | [download](https://cloudstor.aarnet.edu.au/plus/s/nkxN1FipqkbfoKX/download)
+SOLOv2_R101_3x | Yes | 63ms | 38.8 | [download]()
+SOLOv2_R101_DCN_3x | Yes | 97ms | 41.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/4ePTr9mQeOpw0RZ/download)
+SOLOv2_X101_DCN_3x | Yes | 169ms | 42.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/KV9PevGeV8r4Tzj/download)
 
 **Light-weight models:**
 
@@ -46,6 +53,16 @@ Model | Multi-scale training | Testing time / im | AP (minival) | Link
 --- |:---:|:---:|:---:|:---:
 Decoupled_SOLO_Light_R50_3x | Yes | 29ms | 33.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/d0zuZgCnAjeYvod/download)
 Decoupled_SOLO_Light_DCN_R50_3x | Yes | 36ms | 35.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/QvWhOTmCA5pFj6E/download)
+SOLOv2_Light_448_R18_3x | Yes | 19ms | 29.6 | [download](https://cloudstor.aarnet.edu.au/plus/s/HwHys05haPvNyAY/download)
+SOLOv2_Light_448_R34_3x | Yes | 20ms | 32.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/QLQpXg9ny7sNA6X/download)
+SOLOv2_Light_448_R50_3x | Yes | 24ms | 33.7 | [download](https://cloudstor.aarnet.edu.au/plus/s/cn1jABtVJwsbb2G/download)
+SOLOv2_Light_512_DCN_R50_3x | Yes | 34ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/pndBdr1kGOU2iHO/download)
+
+*Disclaimer:*
+
+- Light-weight means light-weight backbone, head and smaller input size. Please refer to the corresponding config files for details.
+- This is a reimplementation and the numbers are slightly different from our original paper (within 0.3% in mask AP).
+
 
 ## Usage
 

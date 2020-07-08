@@ -17,10 +17,11 @@ from .single_stage import SingleStageDetector
 from .single_stage_ins import SingleStageInsDetector
 from .two_stage import TwoStageDetector
 from .solo import SOLO
+from .solov2 import SOLOv2
 
 __all__ = [
     'ATSS', 'BaseDetector', 'SingleStageDetector', 'TwoStageDetector', 'RPN',
     'FastRCNN', 'FasterRCNN', 'MaskRCNN', 'CascadeRCNN', 'HybridTaskCascade',
     'DoubleHeadRCNN', 'RetinaNet', 'FCOS', 'GridRCNN', 'MaskScoringRCNN',
-    'RepPointsDetector', 'FOVEA', 'SingleStageInsDetector', 'SOLO'
+    'RepPointsDetector', 'FOVEA', 'SingleStageInsDetector', 'SOLO', 'SOLOv2'
 ]
