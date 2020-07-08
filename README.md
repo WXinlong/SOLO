@@ -4,7 +4,8 @@
 This project hosts the code for implementing the SOLO algorithms for instance segmentation.
 
 > [**SOLO: Segmenting Objects by Locations**](https://arxiv.org/abs/1912.04488),            
-> Xinlong Wang, Tao Kong, Chunhua Shen, Yuning Jiang, Lei Li        
+> Xinlong Wang, Tao Kong, Chunhua Shen, Yuning Jiang, Lei Li    
+> In: Proc. European Conference on Computer Vision (ECCV), 2020  
 > *arXiv preprint ([arXiv 1912.04488](https://arxiv.org/abs/1912.04488))*   
 
 
@@ -109,12 +110,13 @@ Any pull requests or issues are welcome.
 ## Citations
 Please consider citing our papers in your publications if the project helps your research. BibTeX reference is as follows.
 ```
-@article{wang2019solo,
-  title={SOLO: Segmenting Objects by Locations},
-  author={Wang, Xinlong and Kong, Tao and Shen, Chunhua and Jiang, Yuning and Li, Lei},
-  journal={arXiv preprint arXiv:1912.04488},
-  year={2019}
+@inproceedings{wang2020solo,
+  title     =  {{SOLO}: Segmenting Objects by Locations},
+  author    =  {Wang, Xinlong and Kong, Tao and Shen, Chunhua and Jiang, Yuning and Li, Lei},
+  booktitle =  {Proc. Eur. Conf. Computer Vision (ECCV)},
+  year      =  {2020}
 }
+
 ```
 
 ```
