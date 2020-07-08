@@ -60,7 +60,7 @@ SOLOv2_Light_512_DCN_R50_3x | Yes | 34ms | 36.4 | [download](https://cloudstor.a
 
 *Disclaimer:*
 
-- Please refer to the corresponding config files for details.
+- Light-weight means light-weight backbone, head and smaller input size. Please refer to the corresponding config files for details.
 - This is a reimplementation and the numbers are slightly different from our original paper (within 0.3% in mask AP).
 
 
