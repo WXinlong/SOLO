@@ -4,7 +4,7 @@
 
 - Linux (Windows is not officially supported)
 - Python 3.5+
-- PyTorch 1.1 or higher
+- PyTorch 1.1 or higher (>=1.5 is not tested)
 - CUDA 9.0 or higher
 - NCCL 2
 - GCC 4.9 or higher
