@@ -10,7 +10,8 @@ This project hosts the code for implementing the SOLO algorithms for instance se
 
 
 > [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/2003.10152),            
-> Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen        
+> Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen     
+> In: Proc. Advances in Neural Information Processing Systems (NeurIPS), 2020  
 > *arXiv preprint ([arXiv 2003.10152](https://arxiv.org/abs/2003.10152))*  
 
 More code and models will be released soon. Stay tuned.
@@ -123,7 +124,7 @@ Please consider citing our papers in your publications if the project helps your
 @article{wang2020solov2,
   title={SOLOv2: Dynamic, Faster and Stronger},
   author={Wang, Xinlong and Zhang, Rufeng and  Kong, Tao and Li, Lei and Shen, Chunhua},
-  journal={arXiv preprint arXiv:2003.10152},
+  journal={Proc. Advances in Neural Information Processing Systems (NeurIPS)},
   year={2020}
 }
 ```
