@@ -9,7 +9,7 @@ This project hosts the code for implementing the SOLO algorithms for instance se
 > *arXiv preprint ([arXiv 1912.04488](https://arxiv.org/abs/1912.04488))*   
 
 
-> [**SOLOv2: Dynamic, Faster and Stronger**](https://arxiv.org/abs/2003.10152),            
+> [**SOLOv2: Dynamic and Fast Instance Segmentation**](https://arxiv.org/abs/2003.10152),            
 > Xinlong Wang, Rufeng Zhang, Tao Kong, Lei Li, Chunhua Shen     
 > In: Proc. Advances in Neural Information Processing Systems (NeurIPS), 2020  
 > *arXiv preprint ([arXiv 2003.10152](https://arxiv.org/abs/2003.10152))*  
@@ -122,7 +122,7 @@ Please consider citing our papers in your publications if the project helps your
 
 ```
 @article{wang2020solov2,
-  title={SOLOv2: Dynamic, Faster and Stronger},
+  title={SOLOv2: Dynamic and Fast Instance Segmentation},
   author={Wang, Xinlong and Zhang, Rufeng and  Kong, Tao and Li, Lei and Shen, Chunhua},
   journal={Proc. Advances in Neural Information Processing Systems (NeurIPS)},
   year={2020}
