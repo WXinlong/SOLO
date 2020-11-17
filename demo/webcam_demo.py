@@ -3,7 +3,7 @@ import argparse
 import cv2
 import torch
 
-from mmdet.apis import inference_detector, init_detector, show_result
+from mmdet.apis import inference_detector, init_detector, show_result, show_result_ins
 
 
 def parse_args():
@@ -36,8 +36,8 @@ def main():
         if ch == 27 or ch == ord('q') or ch == ord('Q'):
             break
 
-        show_result(
-            img, result, model.CLASSES, score_thr=args.score_thr, wait_time=1)
+        img_show = show_result_ins(img, result, model.CLASSES, score_thr=0.25)
+        cv2.imshow('Demo', img_show)
 
 
 if __name__ == '__main__':

@@ -227,12 +227,14 @@ def show_result_ins(img,
         np.ndarray or None: If neither `show` nor `out_file` is specified, the
             visualized image is returned, otherwise None is returned.
     """
-    
+
     assert isinstance(class_names, (tuple, list))
     img = mmcv.imread(img)
     img_show = img.copy()
     h, w, _ = img.shape
 
+    if not result or result == [None]:
+        return img_show
     cur_result = result[0]
     seg_label = cur_result[0]
     seg_label = seg_label.cpu().numpy().astype(np.uint8)
@@ -283,6 +285,6 @@ def show_result_ins(img,
         cv2.putText(img_show, label_text, vis_pos,
                         cv2.FONT_HERSHEY_COMPLEX, 0.3, (255, 255, 255))  # green
     if out_file is None:
-        return img
+        return img_show
     else:
         mmcv.imwrite(img_show, out_file)
