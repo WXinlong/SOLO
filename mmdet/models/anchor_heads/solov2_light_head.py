@@ -11,7 +11,17 @@ from ..utils import bias_init_with_prob, ConvModule
 
 INF = 1e8
 
-from scipy import ndimage
+def center_of_mass(bitmasks):
+    _, h, w = bitmasks.size()
+    ys = torch.arange(0, h, dtype=torch.float32, device=bitmasks.device)
+    xs = torch.arange(0, w, dtype=torch.float32, device=bitmasks.device)
+
+    m00 = bitmasks.sum(dim=-1).sum(dim=-1).clamp(min=1e-6)
+    m10 = (bitmasks * xs).sum(dim=-1).sum(dim=-1)
+    m01 = (bitmasks * ys[:, None]).sum(dim=-1).sum(dim=-1)
+    center_x = m10 / m00
+    center_y = m01 / m00
+    return center_x, center_y
 
 def points_nms(heat, kernel=2):
     # kernel must be 2
@@ -299,13 +309,15 @@ class SOLOv2LightHead(nn.Module):
             half_ws = 0.5 * (gt_bboxes[:, 2] - gt_bboxes[:, 0]) * self.sigma
             half_hs = 0.5 * (gt_bboxes[:, 3] - gt_bboxes[:, 1]) * self.sigma
 
+            # mass center
+            gt_masks_pt = torch.from_numpy(gt_masks).to(device=device)
+            center_ws, center_hs = center_of_mass(gt_masks_pt)
+            valid_mask_flags = gt_masks_pt.sum(dim=-1).sum(dim=-1) > 0
             output_stride = 4
-            for seg_mask, gt_label, half_h, half_w in zip(gt_masks, gt_labels, half_hs, half_ws):
-                if seg_mask.sum() == 0:
+            for seg_mask, gt_label, half_h, half_w, center_h, center_w, valid_mask_flag in zip(gt_masks, gt_labels, half_hs, half_ws, center_hs, center_ws, valid_mask_flags):
+                if not valid_mask_flag:
                    continue
-                # mass center
                 upsampled_size = (mask_feat_size[0] * 4, mask_feat_size[1] * 4)
-                center_h, center_w = ndimage.measurements.center_of_mass(seg_mask)
                 coord_w = int((center_w / upsampled_size[1]) // (1. / num_grid))
                 coord_h = int((center_h / upsampled_size[0]) // (1. / num_grid))
 
@@ -322,7 +334,7 @@ class SOLOv2LightHead(nn.Module):
 
                 cate_label[top:(down+1), left:(right+1)] = gt_label
                 seg_mask = mmcv.imrescale(seg_mask, scale=1. / output_stride)
-                seg_mask = torch.Tensor(seg_mask)
+                seg_mask = torch.from_numpy(seg_mask).to(device=device)
                 for i in range(top, down+1):
                     for j in range(left, right+1):
                         label = int(i * num_grid + j)
@@ -333,8 +345,10 @@ class SOLOv2LightHead(nn.Module):
                         ins_label.append(cur_ins_label)
                         ins_ind_label[label] = True
                         grid_order.append(label)
-            ins_label = torch.stack(ins_label, 0)
-
+            if len(ins_label) == 0:
+                ins_label = torch.zeros([0, mask_feat_size[0], mask_feat_size[1]], dtype=torch.uint8, device=device)
+            else:
+                ins_label = torch.stack(ins_label, 0)
             ins_label_list.append(ins_label)
             cate_label_list.append(cate_label)
             ins_ind_label_list.append(ins_ind_label)
@@ -406,12 +420,11 @@ class SOLOv2LightHead(nn.Module):
         strides = strides[inds[:, 0]]
 
         # mask encoding.
-        N, I = kernel_preds.shape
-        kernel_preds = kernel_preds.view(N, I, 1, 1)
+        I, N = kernel_preds.shape
+        kernel_preds = kernel_preds.view(I, N, 1, 1)
         seg_preds = F.conv2d(seg_preds, kernel_preds, stride=1).squeeze(0).sigmoid()
-
         # mask.
-        seg_masks = seg_preds > 0.5
+        seg_masks = seg_preds > cfg.mask_thr
         sum_masks = seg_masks.sum((1, 2)).float()
 
         # filter.
@@ -465,6 +478,5 @@ class SOLOv2LightHead(nn.Module):
         seg_masks = F.interpolate(seg_preds,
                                size=ori_shape[:2],
                                mode='bilinear').squeeze(0)
-        seg_masks = seg_masks > 0.5
-
+        seg_masks = seg_masks > cfg.mask_thr
         return seg_masks, cate_labels, cate_scores
