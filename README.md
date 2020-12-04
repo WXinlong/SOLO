@@ -24,6 +24,7 @@ More code and models will be released soon. Stay tuned.
 - **State-of-the-art performance:** Our best single model based on ResNet-101 and deformable convolutions achieves **41.7%** in AP on COCO test-dev (without multi-scale testing). A light-weight version of SOLOv2 executes at **31.3** FPS on a single V100 GPU and yields **37.1%** AP.
 
 ## Updates
+   - Training speeds up (~1.7x faster) for all models. (03/12/20)
    - SOLOv2 is available. Code and trained models of SOLOv2 are released. (08/07/2020)
    - Light-weight models and R101-based models are available. (31/03/2020) 
    - SOLOv1 is available. Code and trained models of SOLO and Decoupled SOLO are released. (28/03/2020)
