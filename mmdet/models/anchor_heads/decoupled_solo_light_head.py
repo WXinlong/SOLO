@@ -302,7 +302,7 @@ class DecoupledSOLOLightHead(nn.Module):
             # mass center
             gt_masks_pt = torch.from_numpy(gt_masks).to(device=device)
             center_ws, center_hs = center_of_mass(gt_masks_pt)
-            valid_mask_flags = gt_masks_pt.sum(dim=-1).sum(dim=-1) >= 10
+            valid_mask_flags = gt_masks_pt.sum(dim=-1).sum(dim=-1) > 0
 
             output_stride = stride / 2
             for seg_mask, gt_label, half_h, half_w, center_h, center_w, valid_mask_flag in zip(gt_masks, gt_labels, half_hs, half_ws, center_hs, center_ws, valid_mask_flags):
