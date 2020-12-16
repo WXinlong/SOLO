@@ -436,7 +436,7 @@ class DecoupledSOLOLightHead(nn.Module):
         cate_scores = cate_scores[keep]
         sum_masks = sum_masks[keep]
         cate_labels = cate_labels[keep]
-        # mask scoring
+        # maskness
         seg_score = (seg_masks_soft * seg_masks.float()).sum((1, 2)) / sum_masks
         cate_scores *= seg_score
 

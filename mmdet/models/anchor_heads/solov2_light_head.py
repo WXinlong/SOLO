@@ -438,7 +438,7 @@ class SOLOv2LightHead(nn.Module):
         cate_scores = cate_scores[keep]
         cate_labels = cate_labels[keep]
 
-        # mask scoring.
+        # maskness.
         seg_scores = (seg_preds * seg_masks.float()).sum((1, 2)) / sum_masks
         cate_scores *= seg_scores
 
