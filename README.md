@@ -14,8 +14,8 @@ This project hosts the code for implementing the SOLO algorithms for instance se
 > In: Proc. Advances in Neural Information Processing Systems (NeurIPS), 2020  
 > *arXiv preprint ([arXiv 2003.10152](https://arxiv.org/abs/2003.10152))*  
 
-More code and models will be released soon. Stay tuned.
 
+![highlights](highlights.png)
 
 ## Highlights
 - **Totally box-free:**  SOLO is totally box-free thus not being restricted by (anchor) box locations and scales, and naturally benefits from the inherent advantages of FCNs.
