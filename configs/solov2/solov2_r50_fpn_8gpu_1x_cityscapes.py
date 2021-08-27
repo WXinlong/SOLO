@@ -24,7 +24,7 @@ model = dict(
         strides=[8, 8, 16, 32, 32],
         scale_ranges=((1, 96), (48, 192), (96, 384), (192, 768), (384, 2048)),
         sigma=0.2,
-        num_grids=[40, 36, 24, 16, 12],
+        num_grids=[100, 80, 74, 66, 42],
         ins_out_channels=256,
         loss_ins=dict(
             type='DiceLoss',
@@ -43,7 +43,7 @@ model = dict(
             start_level=0,
             end_level=3,
             num_classes=256,
-            norm_cfg=dict(type='GN', num_groups=32, requires_grad=True)),
+            norm_cfg=dict(type='GN', num_groups=32, requires_grad=True))
     )
 # training and testing settings
 train_cfg = dict()
@@ -63,7 +63,7 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=[(2048, 800), (2048, 1024)], keep_ratio=True),
+    dict(type='Resize', img_scale=[(2048,1024)], keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -78,7 +78,6 @@ test_pipeline = [
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
-            dict(type='RandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Pad', size_divisor=32),
             dict(type='ImageToTensor', keys=['img']),
@@ -86,8 +85,8 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=5,
-    workers_per_gpu=2,
+    imgs_per_gpu=3,
+    workers_per_gpu=5,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instancesonly_filtered_gtFine_train.json',
@@ -97,20 +96,20 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instancesonly_filtered_gtFine_val.json',
         img_prefix=data_root + 'val/',
-        pipeline=test_pipeline),
+        pipeline=train_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instancesonly_filtered_gtFine_test.json',
         img_prefix=data_root + 'test/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=500,
+    warmup_iters=20,
     warmup_ratio=0.01,
     step=[9, 11])
 checkpoint_config = dict(interval=1)
@@ -123,11 +122,12 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 12
+total_epochs = 30
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/solov2_release_r50_fpn_8gpu_1x_CS'
-load_from = None
+work_dir = './work_dirs/SOLOv2_CS'
+load_from = ''
 resume_from = None
-workflow = [('train', 1)]
+workflow = [('train', 1),('val',1)]
+
