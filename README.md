@@ -36,6 +36,7 @@ This implementation is based on [mmdetection](https://github.com/open-mmlab/mmde
 
 ## Models
 For your convenience, we provide the following trained models on COCO (more models are coming soon).
+If you need the PaddlePaddle framework model, you can click here to view the model.
 
 Model | Multi-scale training | Testing time / im | AP (minival) | Link
 --- |:---:|:---:|:---:|:---:
