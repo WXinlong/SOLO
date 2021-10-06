@@ -60,9 +60,9 @@ python tools/infer.py -c configs/solov2/solov2_r50_fpn_3x_coco.yml --infer_img=d
 ## Citations
 ```
 @article{wang2020solov2,
-  title={SOLOv2: Dynamic, Faster and Stronger},
+  title={SOLOv2: Dynamic and Fast Instance Segmentation},
   author={Wang, Xinlong and Zhang, Rufeng and  Kong, Tao and Li, Lei and Shen, Chunhua},
-  journal={arXiv preprint arXiv:2003.10152},
+  journal={Proc. Advances in Neural Information Processing Systems (NeurIPS)},
   year={2020}
 }
 ```
