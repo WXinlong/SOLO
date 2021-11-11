@@ -100,20 +100,20 @@ class MaskFeatHead(nn.Module):
     def forward(self, inputs):
         assert len(inputs) == (self.end_level - self.start_level + 1)
 
-        feature_add_all_level = self.convs_all_levels[0](inputs[0])
-        for i in range(1, len(inputs)):
+        feature_add_all_level = []
+        for i in range(len(inputs)):
             input_p = inputs[i]
             if i == 3:
-                input_feat = input_p
-                x_range = torch.linspace(-1, 1, input_feat.shape[-1], device=input_feat.device)
-                y_range = torch.linspace(-1, 1, input_feat.shape[-2], device=input_feat.device)
+                x_range = torch.linspace(-1, 1, input_p.shape[-1], device=input_p.device)
+                y_range = torch.linspace(-1, 1, input_p.shape[-2], device=input_p.device)
                 y, x = torch.meshgrid(y_range, x_range)
-                y = y.expand([input_feat.shape[0], 1, -1, -1])
-                x = x.expand([input_feat.shape[0], 1, -1, -1])
+                y = y.expand([input_p.shape[0], 1, -1, -1])
+                x = x.expand([input_p.shape[0], 1, -1, -1])
                 coord_feat = torch.cat([x, y], 1)
                 input_p = torch.cat([input_p, coord_feat], 1)
-                
-            feature_add_all_level += self.convs_all_levels[i](input_p)
 
+            feature_add_all_level.append(self.convs_all_levels[i](input_p))
+        feature_add_all_level = torch.stack(feature_add_all_level, 0).sum(0)
         feature_pred = self.conv_pred(feature_add_all_level)
+
         return feature_pred
