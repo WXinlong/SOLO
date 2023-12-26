@@ -41,28 +41,28 @@ If you need the models in [PaddlePaddle](https://github.com/PaddlePaddle/Paddle)
 
 Model | Multi-scale training | Testing time / im | AP (minival) | Link
 --- |:---:|:---:|:---:|:---:
-SOLO_R50_1x | No | 77ms | 32.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/nTOgDldI4dvDrPs/download)
-SOLO_R50_3x | Yes | 77ms |  35.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/x4Fb4XQ0OmkBvaQ/download)
-SOLO_R101_3x | Yes | 86ms |  37.1 | [download](https://cloudstor.aarnet.edu.au/plus/s/WxOFQzHhhKQGxDG/download)
-Decoupled_SOLO_R50_1x | No | 85ms | 33.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/RcQyLrZQeeS6JIy/download)
-Decoupled_SOLO_R50_3x | Yes | 85ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/dXz11J672ax0Z1Q/download)
-Decoupled_SOLO_R101_3x | Yes | 92ms | 37.9 | [download](https://cloudstor.aarnet.edu.au/plus/s/BRhKBimVmdFDI9o/download)
-SOLOv2_R50_1x | No | 54ms | 34.8 | [download](https://cloudstor.aarnet.edu.au/plus/s/DvjgeaPCarKZoVL/download)
-SOLOv2_R50_3x | Yes | 54ms | 37.5 | [download](https://cloudstor.aarnet.edu.au/plus/s/nkxN1FipqkbfoKX/download)
-SOLOv2_R101_3x | Yes | 66ms | 39.1 | [download](https://cloudstor.aarnet.edu.au/plus/s/61WDqq67tbw1sdw/download)
-SOLOv2_R101_DCN_3x | Yes | 97ms | 41.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/4ePTr9mQeOpw0RZ/download)
-SOLOv2_X101_DCN_3x | Yes | 169ms | 42.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/KV9PevGeV8r4Tzj/download)
+SOLO_R50_1x | No | 77ms | 32.9 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLO_R50_1x.pth?download=true)
+SOLO_R50_3x | Yes | 77ms |  35.8 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLO_R50_3x.pth?download=true)
+SOLO_R101_3x | Yes | 86ms |  37.1 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLO_R101_3x.pth?download=true)
+Decoupled_SOLO_R50_1x | No | 85ms | 33.9 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/DECOUPLED_SOLO_R50_1x.pth?download=true)
+Decoupled_SOLO_R50_3x | Yes | 85ms | 36.4 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/DECOUPLED_SOLO_R50_3x.pth?download=true)
+Decoupled_SOLO_R101_3x | Yes | 92ms | 37.9 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/DECOUPLED_SOLO_R101_3x.pth?download=true)
+SOLOv2_R50_1x | No | 54ms | 34.8 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_R50_1x.pth?download=true)
+SOLOv2_R50_3x | Yes | 54ms | 37.5 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_R50_3x.pth?download=true)
+SOLOv2_R101_3x | Yes | 66ms | 39.1 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_R101_3x.pth?download=true)
+SOLOv2_R101_DCN_3x | Yes | 97ms | 41.4 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_R101_DCN_3x.pth?download=true)
+SOLOv2_X101_DCN_3x | Yes | 169ms | 42.4 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_X101_DCN_3x.pth?download=true)
 
 **Light-weight models:**
 
 Model | Multi-scale training | Testing time / im | AP (minival) | Link
 --- |:---:|:---:|:---:|:---:
-Decoupled_SOLO_Light_R50_3x | Yes | 29ms | 33.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/d0zuZgCnAjeYvod/download)
-Decoupled_SOLO_Light_DCN_R50_3x | Yes | 36ms | 35.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/QvWhOTmCA5pFj6E/download)
-SOLOv2_Light_448_R18_3x | Yes | 19ms | 29.6 | [download](https://cloudstor.aarnet.edu.au/plus/s/HwHys05haPvNyAY/download)
-SOLOv2_Light_448_R34_3x | Yes | 20ms | 32.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/QLQpXg9ny7sNA6X/download)
-SOLOv2_Light_448_R50_3x | Yes | 24ms | 33.7 | [download](https://cloudstor.aarnet.edu.au/plus/s/cn1jABtVJwsbb2G/download)
-SOLOv2_Light_512_DCN_R50_3x | Yes | 34ms | 36.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/pndBdr1kGOU2iHO/download)
+Decoupled_SOLO_Light_R50_3x | Yes | 29ms | 33.0 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/DECOUPLED_SOLO_LIGHT_R50_3x.pth?download=true)
+Decoupled_SOLO_Light_DCN_R50_3x | Yes | 36ms | 35.0 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/DECOUPLED_SOLO_LIGHT_DCN_R50_3x.pth?download=true)
+SOLOv2_Light_448_R18_3x | Yes | 19ms | 29.6 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_LIGHT_448_R18_3x.pth?download=true)
+SOLOv2_Light_448_R34_3x | Yes | 20ms | 32.0 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_LIGHT_448_R34_3x.pth?download=true)
+SOLOv2_Light_448_R50_3x | Yes | 24ms | 33.7 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_LIGHT_448_R50_3x.pth?download=true)
+SOLOv2_Light_512_DCN_R50_3x | Yes | 34ms | 36.4 | [download](https://huggingface.co/xinlongwang/SOLO/resolve/main/SOLOv2_LIGHT_512_DCN_R50_3x.pth?download=true)
 
 *Disclaimer:*
 
