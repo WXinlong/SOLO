@@ -79,7 +79,7 @@ def plot_curve(log_dicts, args):
                 ys = np.concatenate(ys)
                 plt.xlabel('iter')
                 plt.plot(
-                    xs, ys, label=legend[i * num_metrics + j], linewidth=0.5)
+                    xs, ys, label=args.keys[j], linewidth=0.5)
             plt.legend()
         if args.title is not None:
             plt.title(args.title)
